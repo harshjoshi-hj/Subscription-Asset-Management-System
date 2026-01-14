@@ -1,80 +1,64 @@
-Inventory Management System (Desktop Application)
+# Inventory Management System (Desktop Application)
 
-A secure, role-based Inventory & Asset Management System built using Python, Tkinter, and SQLite, designed for industrial and enterprise use.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-green)](https://docs.python.org/3/library/tkinter.html)
+[![Database](https://img.shields.io/badge/Database-SQLite-lightgrey)](https://www.sqlite.org/index.html)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-informational)]()
 
-This application supports admin and user roles, complete audit logging, expiry tracking, and a clean desktop interface suitable for deployment as a Windows EXE installer.
+A secure, role-based **Inventory & Asset Management System** built using Python, Tkinter, and SQLite. Designed for industrial and enterprise use, this application features a clean desktop interface, complete audit logging, and expiry tracking, making it suitable for deployment as a standalone Windows EXE.
 
-⸻
+---
 
 🚀 Features
 
-🔐 Authentication & Roles
-	•	Secure login system
-	•	First-run Admin Setup Wizard
-	•	Role-based access:
-	•	Admin: Full control (users, inventory, logs)
-	•	User: Add/edit inventory (no delete access)
+ 🔐 Authentication & Roles
+* **Secure Login:** SHA-256 hashed password system.
+* **Setup Wizard:** Automatic "First-run" Admin setup.
+* **Role-Based Access Control (RBAC):**
+    * **Admin:** Full control (Manage users, inventory, view logs).
+    * **User:** Operational access (Add/Edit inventory, restricted delete).
 
-⸻
+### 📦 Inventory Management
+* Add, Edit, and Delete (Admin only) asset records.
+* **Track Key Metrics:**
+    * Item Name & Serial/Reference Number.
+    * Category, Department, and Location.
+    * Supplier/Vendor details.
+    * Expiry Dates.
 
-📦 Inventory Management
-	•	Add inventory / asset records
-	•	Edit existing records
-	•	Delete records (admin only)
-	•	Track:
-	•	Item name
-	•	Reference / Serial number
-	•	Category
-	•	Department / Location
-	•	Supplier / Vendor
-	•	Expiry date
+### ⏰ Expiry Monitoring
+* Centralized dashboard for inventory health.
+* dedicated view for expired items.
+* **Alert System:** View items expiring within the next 30 days.
 
-⸻
+### 👥 User Management (Admin)
+* Create and remove user accounts.
+* Assign roles (Admin/User).
+* Reset credentials.
+* Full traceability of user actions.
 
-⏰ Expiry Monitoring
-	•	View expired items
-	•	View items expiring within next 30 days
-	•	Centralized inventory dashboard
+### 🧾 Audit & Logs
+* **Immutable Logging:** Every action is timestamped and stored.
+* **Tracked Events:** Login/Logout, Inventory changes (Add/Edit/Delete), User creation/updates.
 
-⸻
+### 🖥️ Desktop UI
+* Clean, sidebar-based navigation.
+* Optimized for Windows desktop environments.
+* **Offline First:** No internet dependency required.
 
-👥 User Management (Admin)
-	•	Create users
-	•	Assign roles (admin / user)
-	•	Update user credentials
-	•	Remove users
-	•	Full traceability of user actions
+---
 
-⸻
+## 🛠️ Technology Stack
 
-🧾 Audit & Logs
-	•	Every action is logged:
-	•	Login / Logout
-	•	Add / Edit / Delete inventory
-	•	User creation & updates
-	•	Timestamped records stored securely in database
+* **Language:** Python 3.10+
+* **GUI Framework:** Tkinter (Native Python UI)
+* **Database:** SQLite (Embedded, serverless)
+* **Security:** SHA-256 Password Hashing
+* **Architecture:** Modular (Separation of Concerns: UI, Auth, DB, Logic)
 
-⸻
+## 📁 Project Structure
 
-🖥️ Desktop UI
-	•	Clean sidebar-based navigation
-	•	Readable fonts & consistent layout
-	•	Optimized for Windows desktop use
-	•	No internet dependency
-
-⸻
-
-🛠️ Technology Stack
-	•	Python 3.10+
-	•	Tkinter (GUI)
-	•	SQLite (embedded database)
-	•	SHA-256 password hashing
-	•	Modular architecture (UI / Auth / DB / Logic separated)
-
-⸻
-
-📁 Project Structure
-
+```text
 ims/
 │
 ├── main.py                # Application entry point
@@ -93,71 +77,94 @@ ims/
 │
 └── assets.db              # SQLite database (auto-generated)
 
-
-⸻
+```
 
 ▶️ How to Run (Development)
-
 Prerequisites
-	•	Python 3.10 or later
-	•	Tkinter (bundled with standard Python on Windows/macOS)
+Python 3.10 or later.
+
+Tkinter (Usually bundled with standard Python installations on Windows/macOS).
 
 Steps
+Clone the repository or download the source code.
 
-python3 main.py
+Navigate to the project directory.
 
-On first launch:
-	•	You will be prompted to create an admin account
-	•	After setup, the normal login screen appears
+Run the application:
 
-⸻
+Bash
 
-📦 Windows EXE Build (Production)
+```python main.py```
 
-This application is designed to be packaged using PyInstaller:
+or
 
+
+```python3 main.py```
+
+
+Note: On the very first launch, the application will detect a fresh install and prompt you to create the Master Admin Account.
+
+
+> **Note:** On the very first launch, the application will detect a fresh install and prompt you to create the **Master Admin Account**.
+
+---
+
+## 📦 Building for Windows (Production)
+
+This application is optimized to be packaged as a standalone `.exe` using PyInstaller.
+
+1. **Install PyInstaller:**
+```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed main.py
 
-The resulting .exe can be distributed and installed on Windows systems.
+```
 
-⸻
 
-🔐 Security Notes
-	•	Passwords are never stored in plain text
-	•	SHA-256 hashing is used
-	•	SQLite database is local and offline
-	•	No external network dependencies
+2. **Build the Executable:**
+```bash
+pyinstaller --onefile --windowed --name="InventorySystem" main.py
 
-⸻
+```
 
-📈 Suitable For
-	•	Manufacturing companies
-	•	Industrial inventory tracking
-	•	Asset compliance systems
-	•	License & expiry monitoring
-	•	Internal enterprise tools
 
-⸻
+3. **Locate the File:**
+The resulting `.exe` will be found in the `dist/` folder. This file is portable and can be distributed to client machines.
 
-🔧 Future Enhancements (Planned)
-	•	Audit export (CSV / PDF)
-	•	Backup & restore
-	•	License key enforcement
-	•	Installer wizard
-	•	Permissions matrix UI
-	•	Dark mode UI
+---
 
-⸻
+## 🔐 Security Notes
 
-👨‍💻 Credits
+* **Password Safety:** Passwords are salted and hashed using SHA-256; they are never stored in plain text.
+* **Data Privacy:** The SQLite database is stored locally (`assets.db`), ensuring data remains offline and within the organization's network.
+* **Network:** No external network calls or cloud dependencies.
 
-Designed and Developed by Harsh
+---
 
-⸻
+## 📈 Use Cases
 
-If you want, next I can:
-	•	✨ polish UI further (enterprise look)
-	•	📄 add export to CSV/PDF
-	•	🔑 add license & activation system
-	•	📦 prepare a commercial-ready installer flow
+* **Manufacturing:** Raw material and spare parts tracking.
+* **Industrial:** Asset compliance and machinery maintenance logs.
+* **Enterprise:** Internal IT asset management.
+* **Retail/Pharma:** Expiry date monitoring for perishable goods.
+
+---
+
+## 🔧 Roadmap & Future Enhancements
+
+* [ ] **Data Export:** Generate CSV/PDF reports for audits.
+* [ ] **Backup System:** Integrated database backup and restore tools.
+* [ ] **Licensing:** License key enforcement and activation system.
+* [ ] **Installer:** Create a standard Windows Setup Wizard (MSI/Inno Setup).
+* [ ] **UI Customization:** Dark Mode support.
+
+---
+
+## 👨‍💻 Credits
+
+**Designed and Developed by Harsh**
+
+
+
+### Next Steps for you
+
+The README mentions "Future Enhancements" that you are considering. Would you like me to help you implement the **Export to CSV/PDF** feature next, or should we work on the **License Key/Activation system** to make it commercial-ready?
